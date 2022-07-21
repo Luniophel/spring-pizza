@@ -54,7 +54,7 @@ public class MenuController
 	{
 		
 	    if (br.hasErrors())
-	    	return "/le-nostre-pizze/nuova-pizza";
+	    	return "/sections/menu/pizza/pizzaNew";
 	    
 	    else
 	    {

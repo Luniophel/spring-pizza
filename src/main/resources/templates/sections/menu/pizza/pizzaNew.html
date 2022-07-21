@@ -9,26 +9,38 @@
   <body>
     <h1>Aggiungi una nuova pizza!</h1>
     
+    <section class="container my-5">
     	<form 
     		id="form-pizza"
     		th:object="${pizza}"
     		th:action="@{/menu/le-nostre-pizze/nuova-pizza}"
     		method="POST"
+    		class="container col-6"
     	>
 			  <div class="mb-3">
 				    <label for="nome" class="form-label">Nome Pizza</label>
-				    <input type="text" class="form-control" id="nome" th:field="*{nome}">
+				    <input type="text" class="form-control" id="nome" th:field="*{nome}" th:errorClass="is-invalid">
+				    <div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+				    	<ul>
+				    		<li th:each="error : ${#fields.errors('nome')}" th:text="${error}">PLACEHOLDER</li>
+				    	</ul>
+				    </div>
 			  </div>
 			  <div class="mb-3">
 				    <label for="descrizione" class="form-label">Descrizione</label>
-				    <input type="text" class="form-control" id="descrizione" th:field="*{descrizione}">
+				    <textarea class="form-control" id="descrizione" th:field="*{descrizione}"rows="10"></textarea>
 			  </div>
 			  <div class="mb-3">
 				    <label for="prezzo" class="form-label">Prezzo</label>
-				    <input type="number" class="form-control" id="prezzo" th:field="*{prezzo}">
+				    <input type="number" class="form-control" id="prezzo" th:field="*{prezzo}" th:errorClass="is-invalid">
+				    <div th:if="${#fields.hasErrors('prezzo')}" class="invalid-feedback">
+				    	<ul>
+				    		<li th:each="error : ${#fields.errors('prezzo')}" th:text="${error}">PLACEHOLDER</li>
+				    	</ul>
+				    </div>
 			  </div>
 			  <button type="submit" class="btn btn-primary">Salva</button>
 		</form>
-
+    </section>
   </body>
 </html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+  <head>
+	
+	<th:block th:replace="fragments/commons :: src-head"></th:block>
+    <title>PIZZA LIST</title>
+    
+  </head>
+  <body>
+    <h1>PIZZA LIST</h1>
+    <a class="btn btn-primary" th:href="@{/menu/le-nostre-pizze/nuova-pizza}">Add a book</a>
+    
+    <div class="container col-6" th:if="${pizzaList.isEmpty()}">
+    	<h1 class="text-center">La lista è vuota.</h1>
+    </div>
+    
+    <div class="container" th:unless="${pizzaList.isEmpty()}">
+    	<div class="row">
+    	
+	    	<!-- Cards Pizze -->
+	    	<div class="col-4 mx-2"  th:each="pl : ${pizzaList}">
+		    	<!-- Aggiunti come Anchor per condurre a PizzaDetail in futuro-->
+		    	<div class="w-100 bg-success text-center">
+		  			<a href="#" class="text-decoration-none fw-bold text-light" th:text="${pl.nome}">PLACEHOLDER</a>
+		    	</div>
+				<p href="#" class="w-100 bg-light" th:text="${pl.descrizione}">PLACEHOLDER</p>
+				<p href="#" class="w-100 bg-light border" th:text="${pl.prezzo} + '€'">PLACEHOLDER</p>
+	    	</div>
+	    	
+    	</div>
+	</div>
+
+  </body>
+</html>

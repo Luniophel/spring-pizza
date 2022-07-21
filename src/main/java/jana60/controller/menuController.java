@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jana60.model.Pizza;
 import jana60.repository.PizzaRepository;
 
 @Controller
@@ -30,7 +31,16 @@ public class MenuController
 	{
 		
 		model.addAttribute("pizzaList", repo.findAll());
-		return "/sections/menu/pizzaList";
+		return "/sections/menu/pizza/pizzaList";
+		
+	}
+	
+	@GetMapping("/le-nostre-pizze/nuova-pizza")
+	public String pizzaForm(Model model)
+	{
+		
+		model.addAttribute("pizza", new Pizza());
+		return "/sections/menu/pizza/pizzaNew";
 		
 	}
 }

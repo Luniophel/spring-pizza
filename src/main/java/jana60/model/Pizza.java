@@ -20,10 +20,9 @@ public class Pizza
 	private String descrizione;
 	
 	private Double prezzo;
-	
+		
 	
 	//GETTER & SETTER
-
 
 	public Integer getId() {
 		return id;

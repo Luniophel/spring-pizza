@@ -31,20 +31,31 @@
     </div>
     
     <div class="container" th:unless="${pizzaList.isEmpty()}">
-    	<div class="row d-flex justify-content-center my-5">
+    	<div class="row d-flex justify-content-center my-2 py-2">
     	
 	    	<!-- Cards Pizze -->
 	    	<div class="col-3 mx-2"  th:each="pl : ${pizzaList}">
 		    	<!-- Aggiunti come Anchor per condurre a PizzaDetail in futuro-->
-		    	<div class="bg-dark text-center rounded-top">
-		  			<a href="#" class="text-decoration-none text-light fw-bold fs-2" th:text="${pl.nome}">PLACEHOLDER</a>
+		    	<div class="bg-dark text-center rounded-top py-2">
+		  			<a href="#" class="text-decoration-none text-light fw-bold fs-4" th:text="${pl.nome}">PLACEHOLDER</a>
 		    	</div>
 		    	<!-- DIV azioni -->
-		    	<div class="container-flex text-center bg-dark">
-		    		<a class="btn btn-danger col-2 m-1 text-light" th:href="@{|/menu/le-nostre-pizze/rimuovi-pizza/${pl.nome}/${pl.id}|}" title="Rimuovi">
+		    	<div class="container-flex text-center bg-dark pb-2">
+		    		<!-- Tasto RIMUOVI -->
+		    		<a 
+			    		class="btn btn-danger col-2 m-1 text-light" 
+			    		th:href="@{|/menu/le-nostre-pizze/rimuovi-pizza/${pl.nome}/${pl.id}|}" 
+			    		title="Rimuovi"
+			    		onclick="return confirm('Sei sicuro?')"
+			    	>
 		    			<i class="fa-solid fa-trash"></i>
 		    		</a>
-		    		<a class="btn btn-info col-2 m-1 text-light" th:href="@{|/menu/le-nostre-pizze/modifica-pizza/${pl.nome}/${pl.id}|}" title="Modifica">
+		    		<!-- Tasto MODIFICA-->
+		    		<a 
+			    		class="btn btn-info col-2 m-1 text-light" 
+			    		th:href="@{|/menu/le-nostre-pizze/modifica-pizza/${pl.nome}/${pl.id}|}" 
+			    		title="Modifica"
+		    		>
 		    			<i class="fa-solid fa-file-pen"></i>
 		    		</a>
 		    	</div>

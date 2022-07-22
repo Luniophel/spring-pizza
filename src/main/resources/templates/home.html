@@ -3,11 +3,13 @@
   <head>
 	
 	<th:block th:replace="fragments/commons :: src-head"></th:block>
-    <title>UPPER PLACEHOLDER</title>
+    <title>Java's Pizza</title>
     
   </head>
   <body>
-    <h1>TITLE PLACEHOLDER</h1>
-
+  	<nav th:replace="fragments/commons :: navbar(home)"></nav>
+    <section class="container text-center my-3">
+    	<h1>Java's Pizza</h1>
+	</section>
   </body>
 </html>

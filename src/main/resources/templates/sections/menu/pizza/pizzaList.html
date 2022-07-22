@@ -3,28 +3,40 @@
   <head>
 	
 	<th:block th:replace="fragments/commons :: src-head"></th:block>
-    <title>PIZZA LIST</title>
+    <title>Le nostre pizze</title>
     
   </head>
   <body>
-    <h1>PIZZA LIST</h1>
-    <a class="btn btn-warning" th:href="@{/menu/le-nostre-pizze/nuova-pizza}">Aggiungi pizza</a>
-    
+  	<nav th:replace="fragments/commons :: navbar(menu)"></nav>
+  	<div class="container text-center my-3">
+	    <h1>Le nostre pizze!</h1>
+	    <div class="row justify-content-center py-3">
+		    <a class="btn btn-warning col-3 mx-2" th:href="@{/menu/le-nostre-pizze/nuova-pizza}">Aggiungi pizza</a>
+		    <a class="btn btn-warning col-3 mx-2" >PLACEHOLDER</a>
+	    </div>
+    </div>
     <div class="container col-6" th:if="${pizzaList.isEmpty()}">
     	<h1 class="text-center">La lista è vuota.</h1>
     </div>
     
     <div class="container" th:unless="${pizzaList.isEmpty()}">
-    	<div class="row">
+    	<div class="row d-flex justify-content-center">
     	
 	    	<!-- Cards Pizze -->
 	    	<div class="col-4 mx-2"  th:each="pl : ${pizzaList}">
 		    	<!-- Aggiunti come Anchor per condurre a PizzaDetail in futuro-->
-		    	<div class="w-100 bg-success text-center">
-		  			<a href="#" class="text-decoration-none fw-bold text-light" th:text="${pl.nome}">PLACEHOLDER</a>
+		    	<div class="bg-light text-center border">
+		  			<a href="#" class="text-decoration-none fw-bold fs-2 text-dark" th:text="${pl.nome}">PLACEHOLDER</a>
 		    	</div>
-				<p href="#" class="w-100 bg-light" th:text="${pl.descrizione}">PLACEHOLDER</p>
-				<p href="#" class="w-100 bg-light border" th:text="${pl.prezzo} + '€'">PLACEHOLDER</p>
+		    	<div class="border">
+		    		<img class="w-100"src="/img/pizza_ph.png" alt="Logo">
+	    		</div>
+		    	<div class="bg-light border p-2">
+					<p th:text="${pl.descrizione}">PLACEHOLDER</p>
+		    	</div>
+		    	<div class="bg-light bg-dark text-center">
+					<p class="text-light fw-bold" th:text="${pl.prezzo} + '€'">PLACEHOLDER</p>
+		    	</div>
 	    	</div>
 	    	
     	</div>

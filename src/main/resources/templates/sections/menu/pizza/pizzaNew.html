@@ -7,8 +7,14 @@
     
   </head>
   <body>
-    <h1>Aggiungi una nuova pizza!</h1>
-    
+  	<nav th:replace="fragments/commons :: navbar(menu)"></nav>
+  	
+  	<!-- Sezione Comandi -->
+  	<section class="container my-3 text-center">
+    	<h1>Aggiungi una nuova pizza!</h1>
+  	</section>
+  	
+  	<!-- Sezione form -->
     <section class="container my-5">
     	<form 
     		id="form-pizza"
@@ -40,6 +46,7 @@
 				    </div>
 			  </div>
 			  <button type="submit" class="btn btn-primary">Salva</button>
+			  <a href="/menu/le-nostre-pizze" class="btn btn-primary">Annulla</a>
 		</form>
     </section>
   </body>

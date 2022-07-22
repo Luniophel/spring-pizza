@@ -3,6 +3,7 @@
   <head>
 	
 	<th:block th:replace="fragments/commons :: src-head"></th:block>
+	<th:block th:replace="fragments/commons :: src-js"></th:block>
     <title>Le nostre pizze</title>
     
   </head>
@@ -11,11 +12,9 @@
   	
   	<!-- Sezione di Controllo -->
   	<section> 
-  		<!-- Non funziona come dovrebbe, vedi dopo-->
-	  	<th:block th:if="${successMessage != ''}" class="alert alert-success">
-	  		<div th:text="${successMessagge}">
-	  			
-	  		</div>
+  		<!-- Messaggio di successo azione -->
+	  	<th:block th:if="${successMessage != null && successMessage != ''}">
+	  		<div th:text="${successMessage}" class="alert alert-success text-dark"></div>
 	  	</th:block>
 	  	
 	  	<div class="container text-center my-3">
@@ -60,6 +59,7 @@
 					<p class="text-light fw-bold" th:text="${pl.prezzo} + '€'">PLACEHOLDER</p>
 		    	</div>
 	    	</div>
+	    	<!-- Fine Cards-->
 	    	
     	</div>
 	</div>

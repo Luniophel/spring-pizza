@@ -93,9 +93,9 @@ public class MenuController
 		{
 			
 			repo.deleteById(pizzaId);
-			ra.addFlashAttribute("successMessage", "La " + result.get().getNome() + "è stata eliminata con successo.");
+			ra.addFlashAttribute("successMessage", "La " + result.get().getNome() + " è stata eliminata con successo.");
 			return "redirect:/menu/le-nostre-pizze";
-
+		
 		}
 		
 		else			
@@ -120,8 +120,7 @@ public class MenuController
 		
 		else			
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza con ID" + pizzaId + "non presente.");
-		
-		
+			
 	}
 
 }

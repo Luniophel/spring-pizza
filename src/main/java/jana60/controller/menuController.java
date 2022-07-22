@@ -57,11 +57,21 @@ public class MenuController
 		
 	}
 	
-	@PostMapping("/le-nostre-pizze/nuova-pizza")
-	public String save(@Valid @ModelAttribute("pizza") Pizza pizzaForm, BindingResult br)
+	@PostMapping("/le-nostre-pizze/salva-pizza")
+	public String save(@Valid @ModelAttribute("pizza") Pizza pizzaForm, BindingResult br, Model model)
 	{
 		boolean hasErrors = br.hasErrors();
-		if(repo.countByNome(pizzaForm.getNome()) > 0)
+		boolean validNome = true;
+		
+		//Validazione tipo di attività (UPDATE o CREATE)
+		if(pizzaForm.getId() != null)	//Se possiede già un ID, allora è già stato creato, quindi siamo in UPDATE
+		{
+			Pizza pizzaOld = repo.findById(pizzaForm.getId()).get();
+			if(pizzaOld.getNome().equalsIgnoreCase(pizzaForm.getNome()))
+				validNome = false;
+		}
+		//Validazione unicità del Parametro NOME
+		if(validNome && repo.countByNome(pizzaForm.getNome()) > 0)
 		{
 			
 			br.addError(new FieldError("pizza", "nome", "Hai già una pizza con questo nome"));
@@ -113,8 +123,8 @@ public class MenuController
 		if(result.isPresent())
 		{
 			
-			model.addAttribute("book", result.get());
-			return "redirect:/menu/le-nostre-pizze";
+			model.addAttribute("pizza", result.get());
+			return "/sections/menu/pizza/pizzaNew";
 
 		}
 		

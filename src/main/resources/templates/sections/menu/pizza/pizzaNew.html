@@ -19,10 +19,13 @@
     	<form 
     		id="form-pizza"
     		th:object="${pizza}"
-    		th:action="@{/menu/le-nostre-pizze/nuova-pizza}"
+    		th:action="@{/menu/le-nostre-pizze/salva-pizza}"
     		method="POST"
     		class="container col-6"
     	>
+    	
+    	<!--  campo nascosto per l'id -->
+		<input type="hidden" th:field="*{id}">
 			  <div class="mb-3">
 				    <label for="nome" class="form-label">Nome Pizza</label>
 				    <input type="text" class="form-control" id="nome" th:field="*{nome}" th:errorClass="is-invalid">

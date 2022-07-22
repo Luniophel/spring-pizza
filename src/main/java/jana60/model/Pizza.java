@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -27,6 +28,7 @@ public class Pizza
 	private String descrizione;
 	
 	@NotNull(message = "Non penso tu voglia regalare le tue pizze...")
+	@Min(value = 0)
 	private Double prezzo;
 		
 	

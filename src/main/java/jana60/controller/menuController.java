@@ -102,5 +102,26 @@ public class MenuController
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza con ID" + pizzaId + "non presente.");
 					
 	}
+	
+	//___COMANDI MODIFICA PIZZA___//
+	
+	@GetMapping("/le-nostre-pizze/modifica-pizza/{pizzaNome}/{pizzaId}")
+	public String edit(@PathVariable("pizzaId") Integer pizzaId, Model model)
+	{
+		
+		Optional<Pizza> result = repo.findById(pizzaId);
+		if(result.isPresent())
+		{
+			
+			model.addAttribute("book", result.get());
+			return "redirect:/menu/le-nostre-pizze";
+
+		}
+		
+		else			
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza con ID" + pizzaId + "non presente.");
+		
+		
+	}
 
 }

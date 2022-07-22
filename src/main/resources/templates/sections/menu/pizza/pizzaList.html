@@ -10,12 +10,14 @@
   	<nav th:replace="fragments/commons :: navbar(menu)"></nav>
   	
   	<!-- Sezione di Controllo -->
-  	<section>
-  	<!-- VEDERE DOPO
-  		<div th:if="${successMessage != ''}" class="alert alert-success" th:text"{successMessagge}">
-  			
-  		</div>
-  	-->
+  	<section> 
+  		<!-- Non funziona come dovrebbe, vedi dopo-->
+	  	<th:block th:if="${successMessage != ''}" class="alert alert-success">
+	  		<div th:text="${successMessagge}">
+	  			
+	  		</div>
+	  	</th:block>
+	  	
 	  	<div class="container text-center my-3">
 		    <h1>Le nostre pizze!</h1>
 		    <div class="row justify-content-center py-3">
@@ -35,17 +37,26 @@
 	    	<!-- Cards Pizze -->
 	    	<div class="col-3 mx-2"  th:each="pl : ${pizzaList}">
 		    	<!-- Aggiunti come Anchor per condurre a PizzaDetail in futuro-->
-		    	<div class="bg-light text-center border">
-		  			<a href="#" class="text-decoration-none fw-bold fs-2 text-dark" th:text="${pl.nome}">PLACEHOLDER</a>
-		    		<a class="btn btn-warning" th:href="@{|/menu/le-nostre-pizze/rimuovi-pizza/${pl.nome}/${pl.id}|}" title="Rimuovi">PH</a>
+		    	<div class="bg-dark text-center rounded-top">
+		  			<a href="#" class="text-decoration-none text-light fw-bold fs-2" th:text="${pl.nome}">PLACEHOLDER</a>
 		    	</div>
+		    	<!-- DIV azioni -->
+		    	<div class="container-flex text-center bg-dark">
+		    		<a class="btn btn-danger col-2 m-1 text-light" th:href="@{|/menu/le-nostre-pizze/rimuovi-pizza/${pl.nome}/${pl.id}|}" title="Rimuovi">
+		    			<i class="fa-solid fa-trash"></i>
+		    		</a>
+		    		<a class="btn btn-info col-2 m-1 text-light" th:href="@{|/menu/le-nostre-pizze/modifica-pizza/${pl.nome}/${pl.id}|}" title="Modifica">
+		    			<i class="fa-solid fa-file-pen"></i>
+		    		</a>
+		    	</div>
+		    	<!-- DIV immagine -->
 		    	<div class="border">
 		    		<img class="w-100"src="/img/pizza_ph.png" alt="Logo">
 	    		</div>
 		    	<div class="bg-light border p-2 h-25">
 					<p th:text="${pl.descrizione}">PLACEHOLDER</p>
 		    	</div>
-		    	<div class="bg-light bg-dark text-center">
+		    	<div class="bg-light bg-dark text-center fs-2 rounded-bottom">
 					<p class="text-light fw-bold" th:text="${pl.prezzo} + '€'">PLACEHOLDER</p>
 		    	</div>
 	    	</div>

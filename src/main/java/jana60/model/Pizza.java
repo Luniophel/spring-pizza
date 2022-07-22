@@ -20,7 +20,7 @@ public class Pizza
 	private Integer id;
 	
 	@NotBlank(message = "La pizza deve avere un nome")
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String nome;
 	
 	@Lob

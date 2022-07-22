@@ -8,30 +8,41 @@
   </head>
   <body>
   	<nav th:replace="fragments/commons :: navbar(menu)"></nav>
-  	<div class="container text-center my-3">
-	    <h1>Le nostre pizze!</h1>
-	    <div class="row justify-content-center py-3">
-		    <a class="btn btn-warning col-3 mx-2" th:href="@{/menu/le-nostre-pizze/nuova-pizza}">Aggiungi pizza</a>
-		    <a class="btn btn-warning col-3 mx-2" >PLACEHOLDER</a>
+  	
+  	<!-- Sezione di Controllo -->
+  	<section>
+  	<!-- VEDERE DOPO
+  		<div th:if="${successMessage != ''}" class="alert alert-success" th:text"{successMessagge}">
+  			
+  		</div>
+  	-->
+	  	<div class="container text-center my-3">
+		    <h1>Le nostre pizze!</h1>
+		    <div class="row justify-content-center py-3">
+			    <a class="btn btn-warning col-3 mx-2" th:href="@{/menu/le-nostre-pizze/nuova-pizza}">Aggiungi pizza</a>
+			    <a class="btn btn-warning col-3 mx-2" >PLACEHOLDER</a>
+		    </div>
 	    </div>
-    </div>
+    </section>
+    
     <div class="container col-6" th:if="${pizzaList.isEmpty()}">
     	<h1 class="text-center">La lista è vuota.</h1>
     </div>
     
     <div class="container" th:unless="${pizzaList.isEmpty()}">
-    	<div class="row d-flex justify-content-center">
+    	<div class="row d-flex justify-content-center my-5">
     	
 	    	<!-- Cards Pizze -->
-	    	<div class="col-4 mx-2"  th:each="pl : ${pizzaList}">
+	    	<div class="col-3 mx-2"  th:each="pl : ${pizzaList}">
 		    	<!-- Aggiunti come Anchor per condurre a PizzaDetail in futuro-->
 		    	<div class="bg-light text-center border">
 		  			<a href="#" class="text-decoration-none fw-bold fs-2 text-dark" th:text="${pl.nome}">PLACEHOLDER</a>
+		    		<a class="btn btn-warning" th:href="@{|/menu/le-nostre-pizze/rimuovi-pizza/${pl.nome}/${pl.id}|}" title="Rimuovi">PH</a>
 		    	</div>
 		    	<div class="border">
 		    		<img class="w-100"src="/img/pizza_ph.png" alt="Logo">
 	    		</div>
-		    	<div class="bg-light border p-2">
+		    	<div class="bg-light border p-2 h-25">
 					<p th:text="${pl.descrizione}">PLACEHOLDER</p>
 		    	</div>
 		    	<div class="bg-light bg-dark text-center">

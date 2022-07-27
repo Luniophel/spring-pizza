@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+  <head>
+	
+	<th:block th:replace="fragments/commons :: src-head"></th:block>
+	<th:block th:replace="fragments/commons :: src-js"></th:block>
+    <title>Le nostre pizze</title>
+    
+  </head>
+  <body>
+  	<nav th:replace="fragments/commons :: navbar(menu)"></nav>
+  	
+  	<!-- Sezione di Controllo -->
+  	<section> 
+  		<!-- Messaggio di successo azione -->
+	  	<th:block th:if="${successMessage != null && successMessage != ''}">
+	  		<div th:text="${successMessage}" class="alert alert-success text-dark"></div>
+	  	</th:block>
+	  	
+	  	<!-- Bottoni azioni menù pizze -->
+	  	<th:block th:replace="fragments/pizzaFragments :: pizzamenuBtn"></th:block>
+	  	
+    </section>
+    
+    <div class="container col-6" th:if="${ingredientiList.isEmpty()}">
+    	<h1 class="text-center">La lista è vuota.</h1>
+    </div>
+    
+    <!-- form aggiungi ingredienti -->
+    <form	class="container col-3 align-center"
+    		id="form-ingredienti"
+    		th:object="${ingredienteNew}"
+    		th:action="@{/menu/le-nostre-pizze/ingredienti/salva}"
+    		method="POST"
+    >
+    		<div class="input-group my-3 has-validation">
+    			<input	
+    					th:field="*{nome}" type="text" class="form-control"
+    					placeholder="Inserisci l'ingrediente" th:errorClass="is-invalid"
+    			>
+    			<button class="btn btn-warning" type="submit" id="ingredienti-btn">Salva</button>
+    			<!-- segnalazione errore form -->
+    			<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+    					<ul>
+							<li th:each="err : ${#fields.errors('nome')}" th:text="${err}">
+						</ul>
+    			</div>
+    </form>
+    
+	<div class="container mb-5" th:unless="${ingredientiList.isEmpty()}">
+	        <table class="table my-3">
+	          <thead>
+	            <tr>
+	              <th>Ingrediente</th>
+	              <th>Quantità</th>
+	            </tr>
+	          </thead>
+	          <tbody>
+	            <tr class="align-middle" th:each="il : ${ingredientiList}">
+	              <td th:text="${il.nome}"></td>
+	              <td> PLACEHOLDER </td>
+	            </tr>
+	          </tbody>
+	        </table>
+	</div>
+
+  </body>
+</html>

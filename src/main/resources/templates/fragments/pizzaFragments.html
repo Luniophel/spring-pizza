@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+  
+  	<!-- Bottoni del menù delle Pizze -->
+  	<th:block th:fragment="pizzamenuBtn">
+  	
+	   	<div class="container text-center my-3">
+		<h1>Le nostre pizze!</h1>
+			<div class="row justify-content-center py-3">
+				<a class="btn btn-warning col-3 mx-2" th:href="@{/menu/le-nostre-pizze/nuova-pizza}">Aggiungi pizza</a>
+				<a class="btn btn-warning col-3 mx-2" th:href="@{/menu/le-nostre-pizze/ingredienti}">Aggiungi ingredienti</a>
+			</div>
+		</div>
+  	
+  	</th:block>
+  	
+  </body>
+</html>

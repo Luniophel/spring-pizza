@@ -52,13 +52,28 @@
 	          <thead>
 	            <tr>
 	              <th>Ingrediente</th>
-	              <th>Quantità</th>
+	              <th></th>
 	            </tr>
 	          </thead>
 	          <tbody>
 	            <tr class="align-middle" th:each="il : ${ingredientiList}">
 	              <td th:text="${il.nome}"></td>
-	              <td> PLACEHOLDER </td>
+	              <td class="col-3 bg-dark">
+	              
+	              	<!-- DIV azioni -->
+		    		<div class="container-flex text-center">
+			    		<!-- Tasto RIMUOVI -->
+			    		<a 
+				    		class="btn btn-warning m-1 text-light" 
+				    		th:href="@{|/menu/le-nostre-pizze/ingredienti/rimuovi/${il.id}|}" 
+				    		title="Rimuovi"
+				    		onclick="return confirm('Sei sicuro?')"
+				    	>
+			    			<i class="fa-solid fa-trash"></i>
+			    		</a>
+		    		</div>
+	              
+	              </td>
 	            </tr>
 	          </tbody>
 	        </table>

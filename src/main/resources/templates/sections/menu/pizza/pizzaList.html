@@ -59,9 +59,23 @@
 		    	<div class="border">
 		    		<img class="w-100"src="/img/pizza_ph.png" alt="Logo">
 	    		</div>
-		    	<div class="bg-light border p-2 h-25">
-					<p th:text="${pl.descrizione}">PLACEHOLDER</p>
-		    	</div>
+	    		
+	    		<!-- DIV ingredienti -->
+	    		<div class="container py-2 border">
+				    <table class="table">
+				        <thead>
+				            <tr>
+				              <th>Ingredienti</th>
+				            </tr>
+				        </thead>
+				        <tbody>
+				            <tr class="align-middle" th:each="pi : ${pl.ingredientiPizza}">
+				              <td th:text="${pi.nome}"></td>
+				            </tr>
+				        </tbody>
+				    </table>
+				</div>
+
 		    	<!-- DIV prezzo -->
 		    	<div class="bg-light bg-dark text-center fs-2 rounded-bottom">
 					<p class="text-light fw-bold" th:text="${#numbers.formatDecimal(pl.prezzo, 0, 'COMMA', 2, 'POINT')} + ' €'">PLACEHOLDER</p>

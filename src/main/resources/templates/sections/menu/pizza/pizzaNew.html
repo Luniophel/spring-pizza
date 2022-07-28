@@ -30,6 +30,8 @@
     	
     	<!--  campo nascosto per l'id -->
 		<input type="hidden" th:field="*{id}">
+		
+		<!-- inizio labels -->
 		<div class="row">
 			<div class="col-8"> <!-- DIV laterale sinistro con nome, descrizione e prezzo -->
 				  <!-- nome pizza -->
@@ -60,20 +62,17 @@
 				  <button type="submit" class="btn btn-primary">Salva</button>
 				  <a href="/menu/le-nostre-pizze" class="btn btn-primary">Annulla</a>
 			</div>
+			
+			<!-- checklist ingredienti -->
 			<div class="col-4">
-				<div class="form-check">
-				  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-				  <label class="form-check-label" for="flexCheckDefault">
-				    Default checkbox
-				  </label>
-				</div>
-				<div class="form-check">
-				  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-				  <label class="form-check-label" for="flexCheckChecked">
-				    Checked checkbox
+				<div class="form-check" th:each="i : ${ingredienti}">
+				  <input class="form-check-input" th:field="*{ingredientiPizza}" type="checkbox" th:id="|ingrediente_${i.id}|" th:value="${i.id}">
+				  <label class="form-check-label" th:for="|ingrediente_${i.id}|" th:text="${i.nome}">
+				    PLACEHOLDER
 				  </label>
 				</div>
 			</div>
+			
 		</div>
 		</form>
     </section>

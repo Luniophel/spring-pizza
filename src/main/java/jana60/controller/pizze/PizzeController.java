@@ -19,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jana60.model.Pizza;
+import jana60.repository.IngredienteRepository;
 import jana60.repository.PizzaRepository;
 
 @Controller
@@ -28,6 +29,9 @@ public class PizzeController
 
 	@Autowired
 	private PizzaRepository repo;
+	
+	@Autowired
+	private IngredienteRepository ingRepo;
 	
 	@GetMapping
 	public String pizzaList(Model model)
@@ -43,6 +47,7 @@ public class PizzeController
 	public String pizzaForm(Model model)
 	{
 		
+		model.addAttribute("ingredienti", ingRepo.findAll());
 		model.addAttribute("pizza", new Pizza());
 		return "/sections/menu/pizza/pizzaNew";
 		
@@ -70,8 +75,10 @@ public class PizzeController
 			
 		}
 	    if (hasErrors)
+	    {
+			model.addAttribute("ingredienti", ingRepo.findAll());
 	    	return "/sections/menu/pizza/pizzaNew";
-	    
+	    }
 	    else
 	    {
 	    	
@@ -114,6 +121,7 @@ public class PizzeController
 		if(result.isPresent())
 		{
 			
+			model.addAttribute("ingredienti", ingRepo.findAll());
 			model.addAttribute("pizza", result.get());
 			return "/sections/menu/pizza/pizzaNew";
 

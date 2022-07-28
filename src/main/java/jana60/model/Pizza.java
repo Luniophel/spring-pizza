@@ -79,5 +79,13 @@ public class Pizza
 	public void setPrezzo(Double prezzo) {
 		this.prezzo = prezzo;
 	}
+
+	public List<Ingrediente> getIngredientiPizza() {
+		return ingredientiPizza;
+	}
+
+	public void setIngredientiPizza(List<Ingrediente> ingredientiPizza) {
+		this.ingredientiPizza = ingredientiPizza;
+	}
 	
 }

@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -45,11 +46,21 @@ public class Pizza
 	)
 	private List<Ingrediente> ingredientiPizza;
 	
+	@OneToMany(mappedBy="pizza")
+	private List<Immagine> immagini;
 	
 	//GETTER & SETTER
 
 	public Integer getId() {
 		return id;
+	}
+
+	public List<Immagine> getImmagini() {
+		return immagini;
+	}
+
+	public void setImmagini(List<Immagine> immagini) {
+		this.immagini = immagini;
 	}
 
 	public void setId(Integer id) {

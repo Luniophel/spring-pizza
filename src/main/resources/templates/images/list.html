@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<th:block th:replace="fragments/commons :: src-head"></th:block>
+<title>Pizza Images</title>
+</head>
+<body>
+	<nav th:replace="fragments/commons :: navbar('menu')"></nav>
+	<div class="container">
+		<h2 class="text-muted my-3" th:text="'Aggiungi una nuova immagine per ' + ${immagineForm.pizza.nome}"></h2>
+		<hr />
+		<div class="col-6">
+		<!-- Inizio Form (mappata su un oggetto di tipo ImageForm, non Image -->
+			<form 
+				id="form-img" 
+				th:object="${immagineForm}"
+				th:action="@{/immagine/salva}" 
+				method="POST"
+				enctype="multipart/form-data"
+				>
+				<input type="hidden" th:field="*{pizza}">
+				<div class="mb-3">
+				  <label for="contentMultipart" class="form-label"></label>
+				  <input class="form-control" type="file" id="contentMultipart" th:field="*{contentMultipart}">
+				</div>
+				<button class="btn btn-primary" type="submit">Save</button>
+			</form>
+			<!--  fine form -->
+			<!--  inizio lista (model attribute imageList) -->
+			<div class="row">
+				<div class="col-6 my-5" th:each="img : ${immagineList}">
+					<img th:src="@{|/immagine/${img.id}/content|}" class="img-fluid" alt="">
+					<!--  span th:text="${img.id}"></span -->
+				</div>
+			</div>
+			
+			<!--  fine lista -->
+		</div>
+	</div>
+
+	<th:bock th:replace="fragments/commons :: src-js"></th:bock>
+</body>
+</html>

@@ -54,10 +54,17 @@
 		    		>
 		    			<i class="fa-solid fa-file-pen"></i>
 		    		</a>
+		    		<!-- Tasto IMMAGINI -->
+		    		<a class="btn btn-primary" th:href="@{|/immagine/${pl.id}|}" title="Images">
+	  					<i class="fa-solid fa-images"></i>
+	  				</a>
 		    	</div>
 		    	<!-- DIV immagine -->
 		    	<div class="border">
-		    		<img class="w-100"src="/img/pizza_ph.png" alt="Logo">
+		    		<img th:if="${pl.immagini.size() == 0}" class="w-100"src="/img/pizza_ph.png" alt="Logo">
+		    		<div th:each="img : ${pl.immagini}">
+		    			<img th:src="@{|/immagine/${img.id}/content|}" class="img-fluid" alt="">
+		    		</div>
 	    		</div>
 	    		
 	    		<!-- DIV ingredienti -->

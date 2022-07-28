@@ -32,7 +32,7 @@ public class PizzeController
 	
 	@Autowired
 	private IngredienteRepository ingRepo;
-	
+		
 	@GetMapping
 	public String pizzaList(Model model)
 	{

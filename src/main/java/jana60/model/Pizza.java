@@ -44,7 +44,7 @@ public class Pizza
 			inverseJoinColumns = {@JoinColumn(name = "ingredienti_id")}
 	)
 	private List<Ingrediente> ingredientiPizza;
-		
+	
 	
 	//GETTER & SETTER
 

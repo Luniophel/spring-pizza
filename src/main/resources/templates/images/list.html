@@ -9,8 +9,9 @@
 	<div class="container">
 		<h2 class="text-muted my-3" th:text="'Aggiungi una nuova immagine per ' + ${immagineForm.pizza.nome}"></h2>
 		<hr />
-		<div class="col-6">
+		<div class="container">
 		<!-- Inizio Form (mappata su un oggetto di tipo ImageForm, non Image -->
+		<div class="container col-6">
 			<form 
 				id="form-img" 
 				th:object="${immagineForm}"
@@ -19,18 +20,36 @@
 				enctype="multipart/form-data"
 				>
 				<input type="hidden" th:field="*{pizza}">
-				<div class="mb-3">
+				<div class="mb-3 d-flex">
 				  <label for="contentMultipart" class="form-label"></label>
 				  <input class="form-control" type="file" id="contentMultipart" th:field="*{contentMultipart}">
+				  <button class="btn btn-warning" type="submit">Save</button>
 				</div>
-				<button class="btn btn-primary" type="submit">Save</button>
 			</form>
+		</div>
 			<!--  fine form -->
 			<!--  inizio lista (model attribute imageList) -->
 			<div class="row">
-				<div class="col-6 my-5" th:each="img : ${immagineList}">
-					<img th:src="@{|/immagine/${img.id}/content|}" class="img-fluid" alt="">
-					<!--  span th:text="${img.id}"></span -->
+				<div class="col-4" th:each="img : ${immagineList}">
+					<!-- Card -->
+					<div class="my-5 mx-2">
+						<!-- Header -->
+						<div class="bg-dark text-center rounded-top py-2">
+		  					<p class="text-decoration-none text-light fw-bold fs-4" th:text="${img.pizza.nome} + ' #' + ${img.id}">PLACEHOLDER</p>
+		    			</div>
+		    			<!-- Header -->
+						<img th:src="@{|/immagine/${img.id}/content|}" class="img-fluid card-bodyfixed" alt="">
+						<!-- Footer -->
+						<div class="bg-dark text-center rounded-bottom py-2">
+		  					<!-- Tasto RIMUOVI -DA IMPLEMENTARE, NON FUNZIONANTE -->
+				    		<!--a 
+					    		class="btn btn-warning col-2 p-1 text-light" 
+					    		th:href="@{|/menu/le-nostre-pizze/rimuovi-pizza/${pl.nome}/${pl.id}|}" 
+					    		title="Rimuovi"
+					    		onclick="return confirm('Sei sicuro?')"
+					    	-->
+		    			</div>
+					</div>
 				</div>
 			</div>
 			
@@ -39,5 +58,8 @@
 	</div>
 
 	<th:bock th:replace="fragments/commons :: src-js"></th:bock>
+	<th:block th:replace="fragments/commons :: footer"></th:block>
+
+	
 </body>
 </html>

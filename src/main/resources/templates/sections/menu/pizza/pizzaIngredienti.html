@@ -27,27 +27,28 @@
     </div>
     
     <!-- form aggiungi ingredienti -->
-    <form	class="container col-3 align-center"
-    		id="form-ingredienti"
-    		th:object="${ingredienteNew}"
-    		th:action="@{/menu/le-nostre-pizze/ingredienti/salva}"
-    		method="POST"
-    >
-    		<div class="input-group my-3 has-validation">
-    			<input	
-    					th:field="*{nome}" type="text" class="form-control"
-    					placeholder="Inserisci l'ingrediente" th:errorClass="is-invalid"
-    			>
-    			<button class="btn btn-warning" type="submit" id="ingredienti-btn">Salva</button>
-    			<!-- segnalazione errore form -->
-    			<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
-    					<ul>
-							<li th:each="err : ${#fields.errors('nome')}" th:text="${err}">
-						</ul>
-    			</div>
-    </form>
-    
-	<div class="container mb-5" th:unless="${ingredientiList.isEmpty()}">
+    <div>
+	    <form	class="container col-3 align-center"
+	    		id="form-ingredienti"
+	    		th:object="${ingredienteNew}"
+	    		th:action="@{/menu/le-nostre-pizze/ingredienti/salva}"
+	    		method="POST"
+	    >
+	    		<div class="input-group my-3 has-validation">
+	    			<input	
+	    					th:field="*{nome}" type="text" class="form-control"
+	    					placeholder="Inserisci l'ingrediente" th:errorClass="is-invalid"
+	    			>
+	    			<button class="btn btn-warning" type="submit" id="ingredienti-btn">Salva</button>
+	    			<!-- segnalazione errore form -->
+	    			<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+	    					<ul>
+								<li th:each="err : ${#fields.errors('nome')}" th:text="${err}">
+							</ul>
+	    			</div>
+	    </form>
+    </div>
+	<div class="container mb-5 col-4" th:unless="${ingredientiList.isEmpty()}">
 	        <table class="table my-3">
 	          <thead>
 	            <tr>
@@ -55,7 +56,7 @@
 	              <th></th>
 	            </tr>
 	          </thead>
-	          <tbody>
+	          <tbody class="border">
 	            <tr class="align-middle" th:each="il : ${ingredientiList}">
 	              <td th:text="${il.nome}"></td>
 	              <td class="col-3 bg-dark">
@@ -78,6 +79,9 @@
 	          </tbody>
 	        </table>
 	</div>
-
+	
+	
+<th:block th:replace="fragments/commons :: footer"></th:block>
   </body>
+  
 </html>

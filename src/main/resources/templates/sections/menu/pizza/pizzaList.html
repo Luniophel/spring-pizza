@@ -4,6 +4,7 @@
 	
 	<th:block th:replace="fragments/commons :: src-head"></th:block>
 	<th:block th:replace="fragments/commons :: src-js"></th:block>
+	<link th:href="@{/style.css}" rel="stylesheet" />
     <title>Le nostre pizze</title>
     
   </head>
@@ -26,11 +27,11 @@
     	<h1 class="text-center">La lista è vuota.</h1>
     </div>
     
-    <div class="container mb-5" th:unless="${pizzaList.isEmpty()}">
-    	<div class="row d-flex justify-content-center my-2 py-2">
-    	
+    <div class="container py-5" th:unless="${pizzaList.isEmpty()}">
+    	<div class="row">
+    		<div class="col-4 my-3 text-center align-self-stretch" th:each="pl : ${pizzaList}">
 	    	<!-- Cards Pizze -->
-	    	<div class="col-3 mx-2"  th:each="pl : ${pizzaList}">
+	    	<div class="">
 		    	<!-- Aggiunti come Anchor per condurre a PizzaDetail in futuro-->
 		    	<div class="bg-dark text-center rounded-top py-2">
 		  			<a href="#" class="text-decoration-none text-light fw-bold fs-4" th:text="${pl.nome}">PLACEHOLDER</a>
@@ -39,7 +40,7 @@
 		    	<div class="container-flex text-center bg-dark pb-2">
 		    		<!-- Tasto RIMUOVI -->
 		    		<a 
-			    		class="btn btn-warning col-2 m-1 text-light" 
+			    		class="btn btn-warning col-2 p-1 text-light" 
 			    		th:href="@{|/menu/le-nostre-pizze/rimuovi-pizza/${pl.nome}/${pl.id}|}" 
 			    		title="Rimuovi"
 			    		onclick="return confirm('Sei sicuro?')"
@@ -48,27 +49,29 @@
 		    		</a>
 		    		<!-- Tasto MODIFICA-->
 		    		<a 
-			    		class="btn btn-warning col-2 m-1 text-light" 
+			    		class="btn btn-warning col-2 p-1 text-light" 
 			    		th:href="@{|/menu/le-nostre-pizze/modifica-pizza/${pl.nome}/${pl.id}|}" 
 			    		title="Modifica"
 		    		>
 		    			<i class="fa-solid fa-file-pen"></i>
 		    		</a>
 		    		<!-- Tasto IMMAGINI -->
-		    		<a class="btn btn-primary" th:href="@{|/immagine/${pl.id}|}" title="Images">
+		    		<a 	class="btn btn-warning col-2 p-1 text-light" 
+		    			th:href="@{|/immagine/${pl.id}|}" 
+		    			title="Images">
 	  					<i class="fa-solid fa-images"></i>
 	  				</a>
 		    	</div>
 		    	<!-- DIV immagine -->
-		    	<div class="border">
-		    		<img th:if="${pl.immagini.size() == 0}" class="w-100"src="/img/pizza_ph.png" alt="Logo">
+		    	<div class="">
+		    		<img th:if="${pl.immagini.size() == 0}" class="img-fluid image-container border" src="/img/pizza_ph.png" alt="Logo">
 		    		<div th:each="img : ${pl.immagini}">
-		    			<img th:src="@{|/immagine/${img.id}/content|}" class="img-fluid" alt="">
+		    			<img th:src="@{|/immagine/${img.id}/content|}" class="img-fluid image-container" alt="">
 		    		</div>
 	    		</div>
 	    		
 	    		<!-- DIV ingredienti -->
-	    		<div class="container py-2 border">
+	    		<div class="container py-2 card-bodyfixed border">
 				    <table class="table">
 				        <thead>
 				            <tr>
@@ -84,14 +87,15 @@
 				</div>
 
 		    	<!-- DIV prezzo -->
-		    	<div class="bg-light bg-dark text-center fs-2 rounded-bottom">
+		    	<div class=" bg-dark text-center fs-2 rounded-bottom">
 					<p class="text-light fw-bold" th:text="${#numbers.formatDecimal(pl.prezzo, 0, 'COMMA', 2, 'POINT')} + ' €'">PLACEHOLDER</p>
 		    	</div>
 	    	</div>
 	    	<!-- Fine Cards-->
-	    	
+    		</div>	
     	</div>
 	</div>
 
+	<th:block th:replace="fragments/commons :: footer"></th:block>
   </body>
 </html>

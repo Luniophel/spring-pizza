@@ -38,16 +38,18 @@
 		  					<p class="text-decoration-none text-light fw-bold fs-4" th:text="${img.pizza.nome} + ' #' + ${img.id}">PLACEHOLDER</p>
 		    			</div>
 		    			<!-- Header -->
-						<img th:src="@{|/immagine/${img.id}/content|}" class="img-fluid card-bodyfixed" alt="">
+						<img th:src="@{|/immagine/${img.id}/content|}" class="img-fluid image-controller" alt="">
 						<!-- Footer -->
 						<div class="bg-dark text-center rounded-bottom py-2">
-		  					<!-- Tasto RIMUOVI -DA IMPLEMENTARE, NON FUNZIONANTE -->
-				    		<!--a 
-					    		class="btn btn-warning col-2 p-1 text-light" 
-					    		th:href="@{|/menu/le-nostre-pizze/rimuovi-pizza/${pl.nome}/${pl.id}|}" 
+		  					<!-- Tasto RIMUOVI -->
+				    		<a 
+					    		class="btn btn-warning p-1 text-light col-3" 
+					    		th:href="@{|/immagine/${img.pizza.id}/${img.id}/rimuovi|}" 
 					    		title="Rimuovi"
 					    		onclick="return confirm('Sei sicuro?')"
-					    	-->
+					    	>
+					    		<i class="fa-solid fa-trash-can"></i></a>
+				    		</a>
 		    			</div>
 					</div>
 				</div>

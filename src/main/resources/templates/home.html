@@ -8,9 +8,14 @@
   </head>
   <body>
   	<nav th:replace="fragments/commons :: navbar(home)"></nav>
-    <section class="container text-center my-3">
-    	<h1>Java's Pizza</h1>
+    <section class="container text-center py-5">
+    		<h1>Java's Pizza</h1>
 	</section>
+	<section class="container pb-5">
+		<img src="/img/homepage.jpg" class="img-fluid w-100 border shadow" alt="homepagepic">
+
+	</section>
+	
 	
 	<th:block th:replace="fragments/commons :: footer"></th:block>
   </body>

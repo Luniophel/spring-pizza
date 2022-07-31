@@ -27,11 +27,11 @@
     	<h1 class="text-center">La lista è vuota.</h1>
     </div>
     
-    <div class="container py-5" th:unless="${pizzaList.isEmpty()}">
-    	<div class="row">
-    		<div class="col-4 my-3 text-center align-self-stretch" th:each="pl : ${pizzaList}">
+    <div class="container p-5" th:unless="${pizzaList.isEmpty()}">
+    	<div class="row px-5">
+    		<div class="col-sm-12 col-md-6 col-xl-4 my-3 text-center align-self-stretch" th:each="pl : ${pizzaList}">
 	    	<!-- Cards Pizze -->
-	    	<div class="">
+	    	<div class="shadow">
 		    	<!-- Aggiunti come Anchor per condurre a PizzaDetail in futuro-->
 		    	<div class="bg-dark text-center rounded-top py-2">
 		  			<a href="#" class="text-decoration-none text-light fw-bold fs-4" th:text="${pl.nome}">PLACEHOLDER</a>

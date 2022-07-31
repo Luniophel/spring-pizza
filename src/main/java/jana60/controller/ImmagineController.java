@@ -2,6 +2,7 @@ package jana60.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -16,9 +17,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jana60.model.Immagine;
 import jana60.model.ImmagineForm;
+import jana60.repository.ImmagineRepository;
 import jana60.service.ImmagineService;
 
 @Controller
@@ -28,6 +31,9 @@ public class ImmagineController
 
 	@Autowired
 	private ImmagineService service;
+	
+	@Autowired
+	private ImmagineRepository repo;
 	
 	@GetMapping("/{pizzaId}")
 	public String pizzaImmagini(@PathVariable("pizzaId") Integer pizzaId, Model model)
@@ -66,5 +72,24 @@ public class ImmagineController
 	    // ritorno il contenuto, gli headers e lo status http
 	    return new ResponseEntity<byte[]>(content, headers, HttpStatus.OK);
 	  }
+	  
+	  @GetMapping("/{pizzaId}/{immagineId}/rimuovi")
+	  public String delete(@PathVariable("pizzaId") Integer pizzaId, @PathVariable("immagineId") Integer immagineId, RedirectAttributes ra)
+	  {
+			
+			Optional<Immagine> result = repo.findById(immagineId);
+			if(result.isPresent())
+			{
+				
+				repo.deleteById(immagineId);
+				ra.addFlashAttribute("successMessage", "L'immagine di " + result.get().getPizza() + " è stata eliminata con successo.");
+				return "redirect:/immagine/" + pizzaId;
+			
+			}
+			
+			else			
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "L'immagine con ID" + immagineId + "non presente.");
+						
+		}
 
 }

@@ -32,18 +32,25 @@ function createCard(pizza) {
     // dall'oggetto user che arriva dall'api estraggo nome, cognome e url dell'immagine
     const name = pizza.nome;
     const description = pizza.descrizione;
-    const picture = pizza.immagini.content;
+    const picture = pizza.immagini;
     console.log(name, description, picture);
 
     // creo gli elementi del dom
     const col = createDomElement('div', 'col-4');
     const card = createDomElement('div', 'card');
     const img = createDomElement('img', 'card-img-top');
-    img.src = picture;
+    if (picture.length > 0)
+    {
+        img.src = 'data:image/jpeg;base64,' + picture[0].content;
+    }
+   
     const cardBody = createDomElement('div', 'card-body');
     const h5 = createDomElement('h5', 'card-title');
     h5.innerText = name;
+    const p = createDomElement('p', 'text-center');
+    p.innerText = description;
     cardBody.appendChild(h5);
+    cardBody.appendChild(p);
     card.appendChild(img);
     card.appendChild(cardBody);
     col.appendChild(card);
@@ -56,3 +63,4 @@ function createCard(pizza) {
     el.className = className;
     return el;
   }
+  

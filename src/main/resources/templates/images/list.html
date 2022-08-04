@@ -28,7 +28,10 @@
 			</form>
 		</div>
 			<!--  fine form -->
-			<!--  inizio lista (model attribute imageList) -->
+			<div class="container col-6 py-5" th:if="${immagineList.isEmpty()}">
+    			<h1 class="text-center">La lista è vuota.</h1>
+    		</div>
+			<!--  inizio lista (model attribute immagineList) -->
 			<div class="row">
 				<div class="col-4" th:each="img : ${immagineList}">
 					<!-- Card -->

@@ -17,6 +17,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "pizza")
 public class Pizza 
@@ -37,6 +39,7 @@ public class Pizza
 	@Min(value = 0)
 	private Double prezzo;
 	
+	@JsonManagedReference
 	@ManyToMany
 	@JoinTable
 	(
@@ -46,6 +49,7 @@ public class Pizza
 	)
 	private List<Ingrediente> ingredientiPizza;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy="pizza")
 	private List<Immagine> immagini;
 	

@@ -8,6 +8,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table (name="immagini")
 public class Immagine 
@@ -20,6 +22,7 @@ public class Immagine
 	@Lob
 	private byte[] content;
 	
+	@JsonBackReference
 	@ManyToOne
 	private Pizza pizza;
 	
